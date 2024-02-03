@@ -34,8 +34,10 @@ Visit the calculator website [HEREEEE](https://vc-calculator.vercel.app/) to exp
 
 ## Preview Images
 
-<img src="preview/i.jpg" alt="Preview Image 1" width="300" style="display: block; margin: 0 auto;">
-<img src="preview/ii.jpg" alt="Preview Image 2" width="300" style="display: block; margin: 0 auto;">
+<div style="text-align: center;">
+    <img src="preview/i.jpg" alt="Preview Image 1" width="300">
+    <img src="preview/ii.jpg" alt="Preview Image 2" width="300">
+</div>
 
 
 ## License
