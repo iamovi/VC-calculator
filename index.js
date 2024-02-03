@@ -1,7 +1,9 @@
 let display = document.getElementById("display");
 let historyList = document.getElementById("historyList");
 let clearHistoryButton = document.getElementById("clearHistoryButton");
+let downloadHistoryButton = document.getElementById("downloadHistoryButton");
 let gunSoundEnabled = true;
+
 let historyCount = 1;
 
 const audioFiles = [
@@ -64,40 +66,34 @@ function clearDisplay() {
 
 function addToHistory(expression) {
   const historyArray = JSON.parse(localStorage.getItem("calculatorHistory")) || [];
-  const emptyMessage = historyList.querySelector('li');
-
-  if (emptyMessage) {
-    historyList.removeChild(emptyMessage);
-  }
-
-  const historyItem = document.createElement("li");
-  historyItem.textContent = `${historyCount}/ ${expression}`;
-  historyList.appendChild(historyItem);
-  historyCount++;
 
   historyArray.push(expression);
   localStorage.setItem("calculatorHistory", JSON.stringify(historyArray));
 
-  clearHistoryButton.style.display = "block";
+  loadHistoryFromLocalStorage();
 }
 
 function loadHistoryFromLocalStorage() {
   const historyArray = JSON.parse(localStorage.getItem("calculatorHistory")) || [];
+
+  historyList.innerHTML = ""; // Clear the existing history list
 
   if (historyArray.length === 0) {
     const emptyMessage = document.createElement("li");
     emptyMessage.textContent = "Empty";
     historyList.appendChild(emptyMessage);
     clearHistoryButton.style.display = "none";
+    downloadHistoryButton.style.display = "none";
   } else {
-    historyArray.forEach(expression => {
+    historyArray.forEach((expression, index) => {
       const historyItem = document.createElement("li");
-      historyItem.textContent = `${historyCount}/ ${expression}`;
+      historyItem.textContent = `${index + 1}/ ${expression}`;
       historyList.appendChild(historyItem);
-      historyCount++;
     });
 
+    historyCount = historyArray.length + 1;
     clearHistoryButton.style.display = "block";
+    downloadHistoryButton.style.display = "block";
   }
 }
 
@@ -171,6 +167,7 @@ function clearHistory() {
       historyCount = 1;
       localStorage.removeItem("calculatorHistory");
       clearHistoryButton.style.display = "none";
+      downloadHistoryButton.style.display = "none";
       loadHistoryFromLocalStorage();
       closeModal();
     } else {
@@ -194,6 +191,20 @@ function clearHistory() {
 
   function closeModal() {
     document.body.removeChild(modal);
+  }
+}
+
+function downloadHistory() {
+  const historyArray = JSON.parse(localStorage.getItem("calculatorHistory")) || [];
+
+  if (historyArray.length > 0) {
+    const historyText = historyArray.join('\n');
+    const blob = new Blob([historyText], { type: 'text/plain' });
+    const downloadLink = document.createElement('a');
+    
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'calculator_history.txt';
+    downloadLink.click();
   }
 }
 
