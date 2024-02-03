@@ -55,12 +55,13 @@
     <button id="toggleGunSound" onclick="toggleGunSound()">Off Gun Sound</button>
     <p class="remember">_remember to speak only numbers and plus(+), minus(-), multiply(*), devide(/)<br><br>🧟if you speak texts it will throw an error!</p>
     <br>
-    <audio id="themeAudio" src="assets/theme.m4a"></audio>
+    <audio id="themeAudio" src="assets/theme.m4a" loop></audio>
     <p>Listen GTA VC theme song ></p>
     <button class="theme" id="themeButton" onclick="playThemeSong()">Play Theme</button>
     <div class="history">
       <h3>History Box:</h3>
       <ul id="historyList"></ul>
+      <button id="clearHistoryButton" onclick="clearHistory()">Clear History</button>
     </div>
     <hr class="gap">
     <p class="sourcecode">Get source code from, <br><br><a href="https://github.com/iamovi/VC-calculator" target="_blank">https://github.com/<br>iamovi/VC-calculator<i class="bi bi-github"></i> <</a></p>
