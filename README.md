@@ -34,8 +34,8 @@ Visit the calculator website [HEREEEE](https://vc-calculator.vercel.app/) to exp
 
 ## Preview Images
 
-![Preview Image 1](preview/i.png)
-![Preview Image 2](preview/ii.png)
+![Preview Image 1](preview/i.jpg)
+![Preview Image 2](preview/ii.jpg)
 
 ## License
 
