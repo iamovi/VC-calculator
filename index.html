@@ -59,10 +59,14 @@
     <p>Listen GTA VC theme song ></p>
     <button class="theme" id="themeButton" onclick="playThemeSong()">Play Theme</button>
     <div class="history">
-      <h3>History Box:</h3>
-      <ul id="historyList"></ul>
-      <button id="clearHistoryButton" onclick="clearHistory()">Clear History</button>
-    </div>
+  <h3>History Box:</h3>
+  <ul id="historyList"></ul>
+  <div class="history-buttons">
+    <button id="clearHistoryButton" onclick="clearHistory()" class="hisbtn">Clear History</button>
+    <button id="downloadHistoryButton" style="display: none;" onclick="downloadHistory()" class="hisbtn">Download History</button>
+  </div>
+</div>
+
     <hr class="gap">
     <p class="sourcecode">Get source code from, <br><br><a href="https://github.com/iamovi/VC-calculator" target="_blank">https://github.com/<br>iamovi/VC-calculator<i class="bi bi-github"></i> <</a></p>
   </div>
