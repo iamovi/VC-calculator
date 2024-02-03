@@ -9,3 +9,12 @@ This project is a simple calculator with additional features such as speech reco
 - Play GTA Vice City theme song.
 - History box to display past calculations.
 - Toggle sound effects and gun sound on/off.
+
+# Calculator Website >
+
+[Click here](https://vc-calculator.vercel.app/)
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
