@@ -9,7 +9,6 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #3a3a3a;
-  background-color: pink;
   color: #fff;
   background: url(assets/back.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -17,6 +16,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
 .preloader {
   position: fixed;
   top: 0;
@@ -39,13 +39,11 @@ body {
   max-width: 300px;
   text-align: center;
   margin: auto;
- 
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   padding: 20px;
   opacity: 0.7;
 }
-
 
 #display {
   width: 100%;
@@ -57,7 +55,6 @@ body {
   border-radius: 1px;
   background-color: #555;
   color: #fff;
-  
 }
 
 .buttons {
@@ -103,18 +100,17 @@ button:hover {
 
 #toggleGunSound {
   margin-top: 10px;
-  padding: 10px; /* Adjust padding to make it smaller */
-  font-size: 14px; /* Adjust font-size to make it smaller */
+  padding: 10px;
+  font-size: 14px;
   width: 75%;
   box-sizing: border-box;
   cursor: pointer;
   border: none;
   border-radius: 4px;
-  background-color: purple; /* Use the same color as speakButton for consistency */
+  background-color: purple;
   color: #fff;
   transition: background-color 0.3s;
 }
-
 
 .history {
   margin-top: 20px;
@@ -130,7 +126,7 @@ button:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 100px;
+  max-height: 130px;
   overflow-y: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -139,11 +135,11 @@ button:hover {
 }
 
 .remember {
-background: yellow;
-color: black;
-padding: 5px;
-border-radius: 3px;
-font-weight: bold;
+  background: yellow;
+  color: black;
+  padding: 5px;
+  border-radius: 3px;
+  font-weight: bold;
 }
 
 .theme {
@@ -153,22 +149,88 @@ font-weight: bold;
   padding: 10px;
   border-radius: 2px;
 }
+
 .theme:hover {
   background-color: pink;
-  
-  
 }
 
 .gap {
   margin-top: 100px;
 }
+
 .sourcecode {
   font-size: 1.2em;
-  
   text-align: start;
-  
 }
+
 .sourcecode a {
   color: white;
   text-decoration: none;
+}
+
+#historyList li {
+  margin-bottom: 10px;
+}
+
+#clearHistoryButton {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  width: 40%;
+  box-sizing: border-box;
+  cursor: pointer;.
+  border: none;
+  border-radius: 2px;
+  background-color: red;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+#clearHistoryButton:hover {
+  background-color: darkred;
+}
+
+
+/* Add this to your existing CSS code */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  backdrop-filter: blur(10px); /* Glass-like effect */
+  width: 80%;
+  max-width: 400px; /* Adjust as needed */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.modal p {
+  margin-bottom: 10px;
+}
+
+.modal input {
+  display: block;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.modal button {
+  padding: 10px;
+  cursor: pointer;
+  width: 40%;
+  border: none;
+  border-radius: 2px;
+  margin-right: 10px;
+  font-size: 16px;
 }
