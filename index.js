@@ -1,8 +1,9 @@
 let display = document.getElementById("display");
 let historyList = document.getElementById("historyList");
-let gunSoundEnabled = true; // Initially set to true
+let clearHistoryButton = document.getElementById("clearHistoryButton");
+let gunSoundEnabled = true;
+let historyCount = 1;
 
-// Array of 7 audio files
 const audioFiles = [
   'sound/1.mp3',
   'sound/2.mp3',
@@ -13,7 +14,6 @@ const audioFiles = [
   'sound/7.mp3',
 ];
 
-// Preload audio files to improve playback reliability
 const audioElements = audioFiles.map(file => {
   const audio = new Audio(file);
   audio.load();
@@ -21,7 +21,7 @@ const audioElements = audioFiles.map(file => {
 });
 
 const themeAudio = new Audio("assets/theme.m4a");
-themeAudio.load(); // Preload the theme song
+themeAudio.load();
 
 function playRandomAudio() {
   if (gunSoundEnabled) {
@@ -63,23 +63,42 @@ function clearDisplay() {
 }
 
 function addToHistory(expression) {
-  const historyItem = document.createElement("li");
-  historyItem.textContent = expression;
-  historyList.appendChild(historyItem);
-
-  // Save history to local storage
   const historyArray = JSON.parse(localStorage.getItem("calculatorHistory")) || [];
+  const emptyMessage = historyList.querySelector('li');
+
+  if (emptyMessage) {
+    historyList.removeChild(emptyMessage);
+  }
+
+  const historyItem = document.createElement("li");
+  historyItem.textContent = `${historyCount}/ ${expression}`;
+  historyList.appendChild(historyItem);
+  historyCount++;
+
   historyArray.push(expression);
   localStorage.setItem("calculatorHistory", JSON.stringify(historyArray));
+
+  clearHistoryButton.style.display = "block";
 }
 
 function loadHistoryFromLocalStorage() {
   const historyArray = JSON.parse(localStorage.getItem("calculatorHistory")) || [];
-  historyArray.forEach(expression => {
-    const historyItem = document.createElement("li");
-    historyItem.textContent = expression;
-    historyList.appendChild(historyItem);
-  });
+
+  if (historyArray.length === 0) {
+    const emptyMessage = document.createElement("li");
+    emptyMessage.textContent = "Empty";
+    historyList.appendChild(emptyMessage);
+    clearHistoryButton.style.display = "none";
+  } else {
+    historyArray.forEach(expression => {
+      const historyItem = document.createElement("li");
+      historyItem.textContent = `${historyCount}/ ${expression}`;
+      historyList.appendChild(historyItem);
+      historyCount++;
+    });
+
+    clearHistoryButton.style.display = "block";
+  }
 }
 
 function startSpeechRecognition() {
@@ -97,7 +116,6 @@ function startSpeechRecognition() {
       const spokenText = event.results[0][0].transcript.toLowerCase();
       let convertedText = spokenText.trim();
 
-      // Handle each spoken word more precisely
       if (convertedText === 'plus') {
         convertedText = '+';
       } else if (convertedText === 'minus') {
@@ -131,5 +149,57 @@ function toggleGunSound() {
   toggleGunSoundButton.innerText = gunSoundEnabled ? "Off Gun Sound" : "On Gun Sound";
 }
 
-// Load history from local storage on page load
-window.onload = loadHistoryFromLocalStorage;
+function clearHistory() {
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  
+  const modalContent = document.createElement("div");
+  modalContent.className = "modal-content";
+
+  const confirmationText = document.createElement("p");
+  confirmationText.textContent = "Type 'OK' to confirm:";
+  
+  const inputField = document.createElement("input");
+  inputField.type = "text";
+
+  const confirmButton = document.createElement("button");
+  confirmButton.textContent = "Confirm";
+  confirmButton.onclick = function() {
+    const enteredText = inputField.value.toLowerCase();
+    if (enteredText === 'ok') {
+      historyList.innerHTML = "";
+      historyCount = 1;
+      localStorage.removeItem("calculatorHistory");
+      clearHistoryButton.style.display = "none";
+      loadHistoryFromLocalStorage();
+      closeModal();
+    } else {
+      alert("Confirmation failed. Please type 'OK' to confirm.");
+    }
+  };
+
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Cancel";
+  closeButton.onclick = function() {
+    closeModal();
+  };
+
+  modalContent.appendChild(confirmationText);
+  modalContent.appendChild(inputField);
+  modalContent.appendChild(confirmButton);
+  modalContent.appendChild(closeButton);
+  modal.appendChild(modalContent);
+
+  document.body.appendChild(modal);
+
+  function closeModal() {
+    document.body.removeChild(modal);
+  }
+}
+
+window.onload = () => {
+  loadHistoryFromLocalStorage();
+
+  const preloader = document.getElementById('preloader');
+  preloader.style.display = 'none';
+};
