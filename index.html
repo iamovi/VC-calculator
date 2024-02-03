@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ani.css@1.0.2/dist/css/ani.min.css">
+  
+
+  <!-- Preload audio files -->
+  <link rel="preload" as="audio" href="sound/1.mp3">
+  <link rel="preload" as="audio" href="sound/2.mp3">
+  <link rel="preload" as="audio" href="sound/3.mp3">
+  <link rel="preload" as="audio" href="sound/4.mp3">
+  <link rel="preload" as="audio" href="sound/5.mp3">
+  <link rel="preload" as="audio" href="sound/6.mp3">
+  <link rel="preload" as="audio" href="sound/7.mp3">
+  
+  <link href="media.css" rel="stylesheet">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="appendSymbol('/')">/</button>
+      <button onclick="appendSymbol('*')">*</button>
+      <button onclick="appendSymbol('7')">7</button>
+      <button onclick="appendSymbol('8')">8</button>
+      <button onclick="appendSymbol('9')">9</button>
+      <button onclick="appendSymbol('-')">-</button>
+      <button onclick="appendSymbol('4')">4</button>
+      <button onclick="appendSymbol('5')">5</button>
+      <button onclick="appendSymbol('6')">6</button>
+      <button onclick="appendSymbol('+')">+</button>
+      <button onclick="appendSymbol('1')">1</button>
+      <button onclick="appendSymbol('2')">2</button>
+      <button onclick="appendSymbol('3')">3</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="appendSymbol('0')">0</button>
+      <button onclick="appendSymbol('.')">.</button>
+    </div>
+    <button id="speakButton" onclick="startSpeechRecognition()" class="ani-btn-b">Speak</button>
+    <button id="toggleGunSound" onclick="toggleGunSound()">Off Gun Sound</button>
+    <p class="remember">_remember to speak only numbers and plus(+), minus(-), multiply(*), devide(/)<br><br>🧟if you speak texts it will throw an error!</p>
+    <br>
+    <audio id="themeAudio" src="assets/theme.m4a"></audio>
+    <p>Listen GTA VC theme song ></p>
+    <button class="theme" id="themeButton" onclick="playThemeSong()">Play Theme</button>
+    <div class="history">
+      <h3>History Box:</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
