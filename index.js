@@ -94,8 +94,21 @@ function startSpeechRecognition() {
     };
 
     recognition.onresult = function (event) {
-      const spokenText = event.results[0][0].transcript;
-      display.value += spokenText.trim();
+      const spokenText = event.results[0][0].transcript.toLowerCase();
+      let convertedText = spokenText.trim();
+
+      // Handle each spoken word more precisely
+      if (convertedText === 'plus') {
+        convertedText = '+';
+      } else if (convertedText === 'minus') {
+        convertedText = '-';
+      } else if (convertedText === 'multiply' || convertedText === 'times') {
+        convertedText = '*';
+      } else if (convertedText === 'divide') {
+        convertedText = '/';
+      }
+
+      display.value += convertedText;
     };
 
     recognition.onerror = function (event) {
