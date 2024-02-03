@@ -172,7 +172,7 @@ button:hover {
   margin-bottom: 10px;
 }
 
-#clearHistoryButton {
+.hisbtn {
   margin-top: 10px;
   padding: 10px;
   font-size: 14px;
@@ -186,7 +186,7 @@ button:hover {
   transition: background-color 0.3s;
 }
 
-#clearHistoryButton:hover {
+.hisbtn:hover {
   background-color: darkred;
 }
 
@@ -233,4 +233,14 @@ button:hover {
   border-radius: 2px;
   margin-right: 10px;
   font-size: 16px;
+}
+
+.history-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#downloadHistoryButton {
+  margin-left: auto;
+  border-radius: 2px;
 }
