@@ -12,7 +12,7 @@ const audioFiles = [
   'sound/3.mp3',
   'sound/4.mp3',
   'sound/5.mp3',
-  'sound/6.mp3',
+  'sound/6.wav',
   'sound/7.mp3',
 ];
 
